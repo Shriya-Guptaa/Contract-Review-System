@@ -1,0 +1,39 @@
+# UI
+streamlit
+streamlit_pdf_viewer==0.0.27
+
+# Core LangChain
+langchain
+langchain-core
+langchain-community
+
+
+# Groq LLM
+langchain-groq
+groq
+
+# Local/embedded LLMs
+llama-cpp-python
+
+# Embeddings & Vector DB
+transformers>=4.35,<5
+langchain-huggingface
+sentence-transformers
+faiss-cpu
+
+# PDF Processing
+pdfplumber==0.10.3
+pymupdf==1.27.1
+fpdf==1.7.2
+
+# Data Processing
+pandas==2.1.4
+numpy<2.0
+
+# Environment and Configuration
+python-dotenv==1.0.0
+pydantic==2.5.3
+
+# Utilities
+psutil==7.2.2
+requests

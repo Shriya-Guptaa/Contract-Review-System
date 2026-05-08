@@ -1,0 +1,44 @@
+# Ignore environment files
+.env
+
+# Ignore everything by default
+/*
+
+# Allow these repository root files and folders
+!/.gitignore
+!/README.md
+!/requirements.txt
+!/LICENSE
+!/app.py
+!/src/
+!/Sample_Contract/
+
+# Allow contents of allowed folders
+!/src/**
+!/Sample_Contract/**
+
+# Still ignore JSON files everywhere
+*.json
+
+# Common Python ignores
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# VS Code
+.vscode/
+
+# Logs, models, data
+logs/
+data/
+models/
+trainingV2/
+config/
+
+# OS files
+.DS_Store

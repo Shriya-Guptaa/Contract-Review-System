@@ -93,7 +93,6 @@ Contract-Review-System/
 ├── LICENSE
 ├── .gitignore
 ├── .env.example
-├── Sample_Contract
 │
 └── src/
     │
@@ -102,7 +101,7 @@ Contract-Review-System/
     ├── llm_client.py
     ├── pdf_processor.py
     ├── report_generator.py
-    ├── risk_recommender.py
+    ├── risk_and_reco.py
     └── vector_store.py
 
 ---
@@ -255,4 +254,4 @@ config/model_config.py
 
 # Disclaimer
 
-This project is intended for research and educational purposes only. It does not provide legal advice.
+This project is intended for research and educational purposes only. It does not provide legal advice. It is under MIT License

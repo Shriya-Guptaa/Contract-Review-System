@@ -4,11 +4,7 @@
 
 Contract Review System is a Retrieval-Augmented Generation (RAG)-based legal document analysis platform designed to automate contract understanding, compliance checking, clause summarization, and risk assessment.
 
-The system processes uploaded PDF contracts, retrieves relevant clauses using semantic search with FAISS embeddings, and uses a fine-tuned Mistral Large Language Model (LLM) to generate structured outputs.
-
 The project was developed as part of my major project focusing on explainable and modular AI-assisted contract analysis.
-
----
 
 # Features
 
@@ -45,25 +41,38 @@ The project was developed as part of my major project focusing on explainable an
 
 ---
 
-# System Architecture
+# Retrieval Pipeline
+
+The system follows a Retrieval-Augmented Generation (RAG) architecture:
+
+1. PDF text extraction
+2. Chunk creation with overlap
+3. Embedding generation using MiniLM
+4. Vector storage in FAISS
+5. Semantic retrieval using rule-based queries
+6. LLM-based analysis on retrieved chunks
+
+---
+
+# Compliance Checking Workflow
 
 ```text
-User Uploads PDF
-        ↓
-PDF Processing & Chunking
-        ↓
-Embedding Generation (MiniLM)
-        ↓
-FAISS Vector Storage
-        ↓
-Semantic Retrieval
-        ↓
-Fine-Tuned Mistral LLM
-        ↓
-Summary / Compliance / Risk Analysis
-        ↓
-PDF Report Generation
+Rule Selection
+      ↓
+Query Generation
+      ↓
+FAISS Retrieval
+      ↓
+Keyword Validation
+      ↓
+LLM Clause Extraction
+      ↓
+Evidence Verification
+      ↓
+COMPLIANT / NON-COMPLIANT
 ```
+
+The compliance system uses a hybrid retrieval-validation approach combining semantic retrieval with strict keyword-based verification.
 
 ---
 
@@ -104,8 +113,8 @@ Contract-Review-System/
     ├── risk_and_reco.py
     └── vector_store.py
 
----
-
+```
+--- 
 # Excluded Folders
 
 The following folders are excluded from the repository:
@@ -119,70 +128,39 @@ The following folders are excluded from the repository:
 | `trainingV2/` | Training datasets and generated training files |
 
 ---
+# Training Process
 
-# Training Process (Summary)
-
-The LLM used in this project was fine-tuned using LoRA/QLoRA techniques on legal-domain datasets.
+The base **Mistral-7B Instruct v0.2** model was fine-tuned for legal contract analysis using **LoRA/QLoRA** with **Unsloth** for memory-efficient training. The model was trained on legal-domain instruction datasets to improve contract understanding, summarization, clause interpretation, compliance reasoning, and risk assessment.
 
 ## Datasets Used
 
-* CUAD (Contract Understanding Atticus Dataset)
-* ACORD Dataset
-* Custom compliance-rule datasets
+- CUAD (Contract Understanding Atticus Dataset)
+- ACORD Dataset
+- Custom compliance-rule datasets
+
+## Fine-Tuning Configuration
+
+- Parameter-efficient fine-tuning using **LoRA/QLoRA**
+- LoRA adapters applied to the transformer's **attention** (`q_proj`, `k_proj`, `v_proj`, `o_proj`) and **feed-forward** (`gate_proj`, `up_proj`, `down_proj`) layers
+- Tuned key hyperparameters including **`LoRA rank`**, **`LoRA alpha`**, **`learning rate`**, **`batch size`**, **`gradient accumulation`**, and **`maximum sequence length`**
+- 4-bit quantization for memory-efficient training and inference
+- Training performed using **Supervised Fine-Tuning (SFT)** with the **Unsloth** framework
+
 
 ## Training Objectives
 
-* Clause extraction
-* Compliance-oriented reasoning
-* Legal summarization
-* Risk-related analysis
+- Legal clause understanding
+- Contract summarization
+- Compliance-oriented reasoning
+- Risk identification and recommendations
+- Question answering over legal contracts
 
-## Training Stack
+## Export
 
-* Hugging Face Transformers
-* Unsloth
-* PEFT (LoRA/QLoRA)
-* GGUF conversion for inference
+The fine-tuned model was exported to **GGUF (Q4_K_M)** format for efficient inference using **llama.cpp**, and later served through **FastAPI** for integration with the RAG pipeline.
 
-The final model is served remotely through Google Colab and exposed to the application using Ngrok.
 
----
-
-# Retrieval Pipeline
-
-The system follows a Retrieval-Augmented Generation (RAG) architecture:
-
-1. PDF text extraction
-2. Chunk creation with overlap
-3. Embedding generation using MiniLM
-4. Vector storage in FAISS
-5. Semantic retrieval using rule-based queries
-6. LLM-based analysis on retrieved chunks
-
----
-
-# Compliance Checking Workflow
-
-```text
-Rule Selection
-      ↓
-Query Generation
-      ↓
-FAISS Retrieval
-      ↓
-Keyword Validation
-      ↓
-LLM Clause Extraction
-      ↓
-Evidence Verification
-      ↓
-COMPLIANT / NON-COMPLIANT
-```
-
-The compliance system uses a hybrid retrieval-validation approach combining semantic retrieval with strict keyword-based verification.
-
----
-
+<!--
 # Installation
 
 ## 1. Clone Repository
@@ -221,6 +199,7 @@ config/model_config.py
 ```
 
 ---
+-->
 
 # Key Research Contributions
 

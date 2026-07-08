@@ -188,8 +188,8 @@ The compliance system uses a hybrid retrieval-validation approach combining sema
 ## 1. Clone Repository
 
 ```bash
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/Shriya-Guptaa/Contract-Review-System.git
+cd Contract-Review-System
 ```
 
 ## 2. Install Dependencies

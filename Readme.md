@@ -2,7 +2,7 @@
 
 ## Overview
 
-Contract Review System is a Retrieval-Augmented Generation (RAG)-based legal document analysis platform designed to automate contract understanding, compliance checking, clause summarization, and risk assessment.
+Contract Review System is a Retrieval-Augmented Generation (RAG) based legal document analysis platform designed to automate contract understanding, compliance checking, clause summarization and risk assessment using fine-tuned LLM.
 
 The project was developed as part of my major project focusing on explainable and modular AI-assisted contract analysis.
 
